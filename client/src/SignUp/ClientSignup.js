@@ -122,9 +122,9 @@ onSubmit() {
     return (
       <div>
 
-        <h3>WELCOME TO CLIENT SIGNUP FORM </h3>
 
-           <div>
+
+           {/* <div>
               <label>Enter Email: </label>
               <input type="text" onChange={this.onChangeEmail.bind(this)} ref="email" /> <br/> <br/>
 
@@ -147,7 +147,44 @@ onSubmit() {
 
 
 
-            </div>
+            </div> */}
+
+
+
+<div className="container">
+
+<h4> WELCOME TO CLIENT SIGNUP FORM </h4>
+
+  <div className="form-group">
+    <label htmlFor="email">Enter Email:</label>
+    <input type="text" className="form-control" id="email" ref="email" onChange={this.onChangeEmail.bind(this)}/>
+  </div>
+  <div className="form-group">
+    <label htmlFor="password">Enter Password:</label>
+    <input type="password" className="form-control" id="password" ref="password" onChange={this.onChangePassword.bind(this)} />
+  </div>
+  <div className="form-group">
+    <label htmlFor="displayName">Enter Display Name:</label>
+    <input type="text" className="form-control" id="displayName" ref="displayName" onChange={this.onChangeDisplayName.bind(this)}/>
+  </div>
+  <div className="form-group">
+    <label htmlFor="phoneNumber">Enter Phone Number:</label>
+    <input type="text" className="form-control" id="phoneNumber" onChange={this.onChangePhoneNumber.bind(this)} ref="phoneNumber"/>
+  </div>
+  <div className="form-group">
+    <label htmlFor="providedServiceType">Enter Address:</label>
+    <input type="text" className="form-control" id="providedServiceType" onChange={this.onChangeAddress.bind(this)} ref="address"/>
+  </div>
+
+  <button type="submit" className="btn btn-primary" onClick={this.onSubmit.bind(this)}>Submit</button>
+
+
+</div>
+
+
+
+
+
 
 
         </div>

@@ -10,7 +10,11 @@ const Header = () => (
         <li><Link to='/signup/admin'>SignUp For Admin</Link></li>
         <li><Link to='/signup/client'>SignUp for Client</Link></li>
         <li><Link to='/signup/serviceProvider'>SignUp for Service Provider </Link></li>
+        <li><Link to='/login'>LOGIN</Link></li>
+
       </ul>
+
+
     </nav>
   </header>
 )
