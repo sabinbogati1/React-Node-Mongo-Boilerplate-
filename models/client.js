@@ -8,6 +8,7 @@ var clientSchema  = new Schema({
         unique: true
     },
     password: String,
+    displayName:String,
     phoneNumber: Number,
     address:String,
     isActive: Boolean

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-class AdminSignUp extends Component {
+class ClientSignUp extends Component {
 
   constructor(props){
     super(props);
@@ -12,26 +12,8 @@ class AdminSignUp extends Component {
       password:"",
       displayName:"",
       phoneNumber:"",
-      role:[],
-      roleType:""
+      address:""
     }
-
-  }
-
-  componentDidMount(){
-    this.getRoleType();
-  }
-
-  getRoleType(){
-    axios.get("/api/roles/")
-    .then((response)=>{
-      this.setState({
-        role:response.data
-      })
-
-    }).catch( (err)=>{
-      console.log("Error in Getting Role type in admin signup");
-    })
 
   }
 
@@ -53,9 +35,19 @@ onChangePassword(e) {
 }
 
 
+
+
 onChangeDisplayName(e) {
   this.setState(
       { displayName: e.target.value }
+  )
+
+  console.log(e.target.value);
+}
+
+onChangeAddress(e) {
+  this.setState(
+      { address: e.target.value }
   )
 
   console.log(e.target.value);
@@ -80,44 +72,17 @@ onChangeRole(e) {
 }
 
 
-onchangeRoleType(e) {
-  this.setState(
-      {
-        roleType: e.target.value
-      }
-  )
-
-  console.log("Category from create Flow: ", this.state.roleType);
-
-}
-
-
-
-displayRoleTypes() {
-  //console.log("displayCategoryNames",this.state.categoryNames)
-  return this.state.role.map((value, index) => {
-      return (
-          <option key={value._id} value={value.roleType}>
-              {value.roleType}
-          </option>
-
-      )
-  })
-}
-
-
 onSubmit() {
     console.log("Email: ", this.state.email);
     console.log("Password: ", this.state.password);
     console.log("name: ", this.state.displayName);
     console.log("phone number: ", this.state.phoneNumber);
     console.log("Role: ", this.state.role);
-    console.log("roleType: ", this.state.roleType);
     let email = this.state.email;
     let password= this.state.password;
     let displayName=this.state.displayName;
     let phoneNumber = this.state.phoneNumber
-    let roleType = this.state.roleType;
+    let address = this.state.address;
 
     // this.setState({
     //     email:"",
@@ -131,17 +96,14 @@ onSubmit() {
     this.refs.password.value = '';
     this.refs.displayName.value = '';
     this.refs.phoneNumber.value = '';
-    //this.refs.role.value = 'Select Any Name';
-    this.setState({
-      roleType:"Select Any Name"
-    })
+    this.refs.address.value = '';
 
-    axios.post("/api/auth/signup/admin",{
+    axios.post("/api/auth/signup/client",{
       email: email,
       password: password,
       displayName: displayName,
       phoneNumber: phoneNumber ,
-      role: roleType
+      address: address
     }).then(()=>{
       console.log("Successfully posted signUp form");
 
@@ -160,7 +122,7 @@ onSubmit() {
     return (
       <div>
 
-        <h3>WELCOME TO ADMIN SIGNUP FORM </h3>
+        <h3>WELCOME TO CLIENT SIGNUP FORM </h3>
 
            <div>
               <label>Enter Email: </label>
@@ -171,21 +133,14 @@ onSubmit() {
               <input type="text" onChange={this.onChangePassword.bind(this)} ref="password"  /><br/><br/>
 
 
-              <label>Enter Display Name: </label>
-              <input type="text" onChange={this.onChangeDisplayName.bind(this)} ref="displayName" /><br/><br/>
+              <label>Enter Address: </label>
+              <input type="text" onChange={this.onChangeAddress.bind(this)} ref="address" /><br/><br/>
 
               <label>Enter Phone Number: </label>
               <input type="text" onChange={this.onChangePhoneNumber.bind(this)} ref="phoneNumber" /><br/><br/>
 
-              <label>Enter Role: </label>
-              {/* <input type="text" onChange={this.onChangeRole.bind(this)} ref="role" /><br/><br/> */}
-              <select value={this.state.roleType} onChange={this.onchangeRoleType.bind(this)} >
-                            <option> Select Any Name  </option>
-                            {
-                                this.displayRoleTypes()
-                            }
-
-                        </select> <br />
+              <label>Enter Display Name: </label>
+              <input type="text" onChange={this.onChangeDisplayName.bind(this)} ref="displayName" /><br/><br/>
 
 
               <input type="submit" onClick={this.onSubmit.bind(this)} value="Submit"/>
@@ -201,4 +156,4 @@ onSubmit() {
   }
 }
 
-export default AdminSignUp;
+export default ClientSignUp;

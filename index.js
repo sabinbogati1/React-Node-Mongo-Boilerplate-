@@ -1,10 +1,13 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
 
 const config = require("./config");
 require("./db")(config);
 
-var authRoute= require("./auth");
+const authRoute= require("./auth");
+const roleRoute= require("./roles");
+
+
 var bodyParser = require('body-parser');
 
 
@@ -12,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/api/auth",authRoute);
+app.use("/api/roles", roleRoute);
 
 app.post("/api/", (req, res) => {
 
